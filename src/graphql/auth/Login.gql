@@ -1,0 +1,7 @@
+#import "../user/UserFragment.gql"
+
+mutation Singin($loginUserInput: LoginUserInput!) {
+  singin(loginUserInput: $loginUserInput) {
+    ...UserParts
+  }
+}

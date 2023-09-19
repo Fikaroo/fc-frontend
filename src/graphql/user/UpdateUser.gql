@@ -1,0 +1,9 @@
+#import "./UserFragment.gql"
+
+mutation UpdateUser($updateUserId: ID!, $updateUserInput: UpdateUserInput!) {
+  updateUser(id: $updateUserId, updateUserInput: $updateUserInput) {
+    ...UserParts
+    createdAt
+    updatedAt
+  }
+}

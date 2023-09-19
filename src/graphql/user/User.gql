@@ -1,0 +1,9 @@
+#import "./UserFragment.gql"
+
+query SingleUser($id: ID!) {
+  user(id: $id) {
+    ...UserParts
+    createdAt
+    updatedAt
+  }
+}
