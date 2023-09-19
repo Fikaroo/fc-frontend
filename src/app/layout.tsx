@@ -2,8 +2,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 
-import UrqlWrapper from "@/lib/urql-wrapper";
-
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ModeToggle } from "@/components/ModeToggle";
@@ -29,11 +27,9 @@ export default function RootLayout({
           <div className="fixed z-[9999] w-fit right-5 top-3">
             <ModeToggle />
           </div>
-          <UrqlWrapper>
-            <div className="container relative flex flex-col justify-center min-h-screen">
-              {children}
-            </div>
-          </UrqlWrapper>
+          <div className="container relative flex flex-col justify-center min-h-screen">
+            {children}
+          </div>
         </ThemeProvider>
         <Toaster />
       </body>

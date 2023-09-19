@@ -71,13 +71,8 @@ const LoginForm = () => {
   const router = useRouter();
   const { toast } = useToast();
   const onSubmit = async (values: SchemaType) => {
-    const { data, error } = await login(values);
-    if (!data) {
-      return toast({ title: error?.message as any, variant: "destructive" });
-    }
-    toast({ title: data?.singin?.role as any });
-
-    router.push("/admin/dashboard");
+    login(values);
+    // router.push("/admin/dashboard");
   };
 
   return (

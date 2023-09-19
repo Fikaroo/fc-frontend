@@ -1,17 +1,12 @@
 import { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { Fragment } from "react";
 
 export const metadata: Metadata = {
   title: "FreshCard Admin Login",
 };
 
-const LoginLayout = async ({ children }: { children: React.ReactNode }) => {
-  // const { data, error } = await checkAuth();
-  // if (data) {
-  //   // redirect("/dashboard");
-  // }
-  // console.log(data, error);
-  return <section className="flex-1">{children}</section>;
+const LoginLayout = ({ children }: { children: React.ReactNode }) => {
+  return <Fragment>{children}</Fragment>;
 };
 
 export default LoginLayout;

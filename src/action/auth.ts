@@ -1,46 +1,18 @@
-import { getClient } from "@/lib/client";
-import { LoginUserInput } from "../graphql/types";
-import {
-  SinginDocument,
-  SinginMutation,
-  SinginMutationVariables,
-} from "../graphql/operations";
+"use server";
 
-// export async function signup(
-//   createUserInput: CreateUserInput
-// ): Promise<IResponse<SignupMutation>> {
-//   const { data, errors } = await getClient().mutate({
-//     mutation: SignupDocument,
-//     variables: {
-//       createUserInput,
-//     },
-//   });
+import { cookies } from "next/headers";
 
-//   return { data, errors };
-// }
+import { LoginUserInput, SinginDocument } from "@/graphql/generate/graphql";
+import { graphQLClient } from "@/lib/client";
 
-export async function login(loginUserInput: LoginUserInput) {
-  const result = await getClient().mutation<
-    SinginMutation,
-    SinginMutationVariables
-  >(SinginDocument, {
+export const login = async (loginUserInput: LoginUserInput) => {
+  const result = await graphQLClient.request(SinginDocument, {
     loginUserInput,
   });
-  return result;
-}
+  if (result) {
+    const accessToken = result?.singin?.access_token;
+    const refleshToken = result?.singin?.reflesh_token;
+  }
 
-// export async function reflesh(): Promise<IResponse<RefleshMutation>> {
-//   const { data, errors } = await getClient().mutate({
-//     mutation: RefleshDocument,
-//   });
-
-//   return { data, errors };
-// }
-
-// export async function logout(): Promise<IResponse<LogoutMutation>> {
-//   const { data, errors } = await getClient().mutate({
-//     mutation: LogoutDocument,
-//   });
-
-//   return { data, errors };
-// }
+  console.log(result);
+};
