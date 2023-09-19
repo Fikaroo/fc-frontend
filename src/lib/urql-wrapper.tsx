@@ -10,7 +10,7 @@ import {
 } from "@urql/next";
 import { devtoolsExchange } from "@urql/devtools";
 import { authExchange } from "@urql/exchange-auth";
-import { LogoutDocument, RefleshDocument } from "@/graphql/operations";
+import { RefleshDocument } from "@/graphql/operations";
 
 const GraphqlEndpoint = process.env.GRAPHQL_ENDPOINT as string;
 
@@ -35,19 +35,12 @@ export default function UrqlWrapper({ children }: React.PropsWithChildren) {
             },
             async refreshAuth() {
               const { data, error } = await utils.mutate(RefleshDocument, {});
-
-              // if (error) {
-              //   utils.mutate(LogoutDocument, {});
-              // }
             },
           };
         }),
         fetchExchange,
       ],
       suspense: true,
-      fetchOptions: {
-        credentials: "include",
-      },
     });
 
     return [client, ssr];

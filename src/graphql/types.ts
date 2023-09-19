@@ -15,22 +15,19 @@ export type Scalars = {
   Timestamp: { input: any; output: any; }
 };
 
-export type AuthResponse = {
-  __typename?: 'AuthResponse';
-  message: Scalars['String']['output'];
-};
-
-export type CheckAuthResponse = {
-  __typename?: 'CheckAuthResponse';
-  auth: Scalars['Boolean']['output'];
-};
-
 export type CreateUserInput = {
   email: Scalars['String']['input'];
   firstName: Scalars['String']['input'];
   lastName: Scalars['String']['input'];
   password: Scalars['String']['input'];
   role: Role;
+};
+
+export type LoginAuthResponse = {
+  __typename?: 'LoginAuthResponse';
+  access_token: Scalars['String']['output'];
+  reflesh_token: Scalars['String']['output'];
+  user: User;
 };
 
 export type LoginUserInput = {
@@ -40,11 +37,10 @@ export type LoginUserInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  logout: AuthResponse;
-  reflesh: AuthResponse;
+  reflesh: TokenResponse;
   removeUser: User;
   signup: User;
-  singin: User;
+  singin: LoginAuthResponse;
   updateUser: User;
 };
 
@@ -71,7 +67,6 @@ export type MutationUpdateUserArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  checkAuth: CheckAuthResponse;
   user: User;
 };
 
@@ -86,6 +81,12 @@ export enum Role {
   SuperAdmin = 'SUPER_ADMIN',
   Supplier = 'SUPPLIER'
 }
+
+export type TokenResponse = {
+  __typename?: 'TokenResponse';
+  access_token?: Maybe<Scalars['String']['output']>;
+  reflesh_token?: Maybe<Scalars['String']['output']>;
+};
 
 export type UpdateUserInput = {
   createdAt?: InputMaybe<Scalars['Timestamp']['input']>;

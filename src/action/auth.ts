@@ -1,9 +1,6 @@
 import { getClient } from "@/lib/client";
 import { LoginUserInput } from "../graphql/types";
 import {
-  CheckAuthDocument,
-  CheckAuthQuery,
-  CheckAuthQueryVariables,
   SinginDocument,
   SinginMutation,
   SinginMutationVariables,
@@ -30,13 +27,6 @@ export async function login(loginUserInput: LoginUserInput) {
     loginUserInput,
   });
   return result;
-}
-
-export async function checkAuth() {
-  return await getClient().query<CheckAuthQuery, CheckAuthQueryVariables>(
-    CheckAuthDocument,
-    {}
-  );
 }
 
 // export async function reflesh(): Promise<IResponse<RefleshMutation>> {

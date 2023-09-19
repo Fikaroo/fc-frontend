@@ -2,6 +2,10 @@
 
 mutation Singin($loginUserInput: LoginUserInput!) {
   singin(loginUserInput: $loginUserInput) {
-    ...UserParts
+    user {
+      ...UserParts
+    }
+    access_token
+    reflesh_token
   }
 }

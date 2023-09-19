@@ -1,5 +1,5 @@
 mutation Reflesh {
   reflesh {
-    message
+    access_token
   }
 }
