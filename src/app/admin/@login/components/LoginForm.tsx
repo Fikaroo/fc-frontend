@@ -24,7 +24,8 @@ import { useToast } from "@/components/ui/use-toast";
 
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { login } from "@/action/auth";
+import { loginClient } from "@/graphql/client/auth";
+import { useUser } from "@/store/store";
 
 const schema = z.object({
   email: z.string().email("This is not a valid email."),
@@ -67,17 +68,31 @@ const LoginForm = () => {
     resolver: zodResolver(schema),
     defaultValues: { email: "", password: "" },
   });
-
+  const { setUser } = useUser();
   const router = useRouter();
   const { toast } = useToast();
   const onSubmit = async (values: SchemaType) => {
-    const { data, error } = await login(values);
+    const { data, errors } = await loginClient(values);
     if (!data) {
-      return toast({ title: error?.message as any, variant: "destructive" });
+      return toast({
+        title: errors?.[0]?.message as any,
+        variant: "destructive",
+      });
     }
-    toast({ title: data?.singin?.role as any });
 
-    router.push("/admin/dashboard");
+    if (
+      !data?.singin?.role.includes("SUPER_ADMIN") ||
+      !data?.singin?.role.includes("ADMIN")
+    ) {
+      return toast({
+        title: "Access Restricted",
+        variant: "destructive",
+      });
+    }
+
+    setUser(data.singin.role);
+    toast({ title: `Hey ${data?.singin?.firstName}` as any });
+    router.refresh();
   };
 
   return (
