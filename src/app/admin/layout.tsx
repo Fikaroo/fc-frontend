@@ -1,13 +1,12 @@
 "use client";
 
+import Loading from "@/components/Loading";
 import {
   checkAuthClient,
   refleshClient,
   logoutClient,
 } from "@/graphql/client/auth";
 import { useUser } from "@/store/store";
-import useStore from "@/store/useStore";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const AdminLayout = ({
@@ -29,7 +28,9 @@ const AdminLayout = ({
         setLoading(false);
         return setAuth(true);
       }
+
       const { data: refleshData } = await refleshClient();
+
       if (refleshData?.reflesh?.message) {
         setLoading(false);
         return setAuth(true);
@@ -43,8 +44,9 @@ const AdminLayout = ({
   }, [user]);
 
   if (isLoading) {
-    return <>Loading...</>;
+    return <Loading />;
   }
+
   return isAuth ? dashboard : login;
 };
 
