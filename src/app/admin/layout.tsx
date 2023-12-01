@@ -5,9 +5,10 @@ import {
   checkAuthClient,
   refleshClient,
   logoutClient,
-} from "@/graphql/client/auth";
+} from "@/graphql/auth/client-action";
 import { useUser } from "@/store/store";
-import React, { useEffect, useState } from "react";
+import useStore from "@/store/useStore";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 
 const AdminLayout = ({
   dashboard,
@@ -18,9 +19,9 @@ const AdminLayout = ({
 }) => {
   const [isLoading, setLoading] = useState(true);
   const [isAuth, setAuth] = useState(false);
-  const { user } = useUser();
+  const userAction = useStore(useUser, (state) => state);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const checkAuth = async () => {
       const { data: checkAuthData } = await checkAuthClient();
 
@@ -37,11 +38,12 @@ const AdminLayout = ({
       }
 
       logoutClient();
+      userAction?.removeUser();
       setLoading(false);
       return setAuth(false);
     };
     checkAuth();
-  }, [user]);
+  }, [userAction?.user]);
 
   if (isLoading) {
     return <Loading />;

@@ -1,4 +1,4 @@
-#import "../user/UserFragment.gql"
+#import "../../users/schema/UserFragment.gql"
 
 mutation Signup($createUserInput: CreateUserInput!) {
   signup(createUserInput: $createUserInput) {

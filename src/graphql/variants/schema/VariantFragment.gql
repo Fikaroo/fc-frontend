@@ -1,0 +1,7 @@
+fragment VariantParts on Variant {
+  id
+  name
+  unitId
+  createdAt
+  updatedAt
+}

@@ -1,0 +1,7 @@
+#import "./UnitFragment.gql"
+
+mutation UpdateUnit($id: ID!, $updateUnitInput: UpdateUnitInput!) {
+  updateUnit(id: $id, updateUnitInput: $updateUnitInput) {
+    ...UnitParts
+  }
+}

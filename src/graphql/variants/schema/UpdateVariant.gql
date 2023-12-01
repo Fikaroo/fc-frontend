@@ -1,0 +1,7 @@
+#import "./VariantFragment.gql"
+
+mutation UpdateVariant($id: ID!, $updateVariantInput: UpdateVariantInput!) {
+  updateVariant(id: $id, updateVariantInput: $updateVariantInput) {
+    ...VariantParts
+  }
+}

@@ -1,0 +1,7 @@
+#import "./VariantFragment.gql"
+
+query SingleVariant($id: ID!) {
+  variant(id: $id) {
+    ...VariantParts
+  }
+}

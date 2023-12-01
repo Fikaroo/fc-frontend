@@ -1,6 +1,6 @@
 "use client";
 
-import { logoutClient, refleshClient } from "@/graphql/client/auth";
+import { logoutClient, refleshClient } from "@/graphql/auth/client-action";
 import { ApolloLink, HttpLink } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
 import {

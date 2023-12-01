@@ -1,0 +1,7 @@
+#import "./VariantFragment.gql"
+
+mutation RemoveVariant($id: ID!) {
+  removeVariant(id: $id) {
+    ...VariantParts
+  }
+}

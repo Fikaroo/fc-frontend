@@ -1,0 +1,7 @@
+#import "./UnitFragment.gql"
+
+mutation RemoveUnit($id: ID!) {
+  removeUnit(id: $id) {
+    ...UnitParts
+  }
+}

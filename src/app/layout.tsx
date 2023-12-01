@@ -4,9 +4,7 @@ import { Manrope } from "next/font/google";
 
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { ModeToggle } from "@/components/ModeToggle";
 import { ApolloWrapper } from "@/lib/apollo-wrapper";
-import { Suspense } from "react";
 
 const inter = Manrope({ subsets: ["latin"] });
 
@@ -27,9 +25,6 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {/* <div className="fixed z-[9999] w-fit right-5 top-3">
-            <ModeToggle />
-          </div> */}
           <ApolloWrapper>
             <div className="container relative flex flex-col justify-center min-h-screen">
               {children}

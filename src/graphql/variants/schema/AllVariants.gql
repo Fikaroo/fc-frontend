@@ -1,0 +1,7 @@
+#import "./VariantFragment.gql"
+
+query AllVariants {
+  variants {
+    ...VariantParts
+  }
+}

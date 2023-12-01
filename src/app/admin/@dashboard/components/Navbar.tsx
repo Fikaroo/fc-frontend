@@ -6,6 +6,7 @@ import {
   ArchiveIcon,
   DashboardIcon,
   PieChartIcon,
+  RulerSquareIcon,
 } from "@radix-ui/react-icons";
 
 import { ModeToggle } from "@/components/ModeToggle";
@@ -39,20 +40,26 @@ const Navbar = () => {
     },
     {
       id: 2,
+      title: "Units",
+      icon: <RulerSquareIcon />,
+      href: `/admin/units`,
+      active: pathname === `/admin/units`,
+    },
+    {
+      id: 3,
       title: "Categories",
       icon: <DashboardIcon />,
       href: `/admin/categories`,
       active: pathname === `/admin/categories`,
     },
     {
-      id: 3,
+      id: 4,
       title: "Products",
       icon: <ArchiveIcon />,
       href: `/admin/products`,
       active: pathname === `/admin/products`,
     },
   ];
-
   return (
     <NavigationMenu className="justify-between max-w-full py-4">
       <NavigationMenuList>

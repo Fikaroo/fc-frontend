@@ -1,0 +1,7 @@
+#import "./VariantFragment.gql"
+
+mutation CreateVariant($createVariantInput: CreateVariantInput!) {
+  createVariant(createVariantInput: $createVariantInput) {
+    ...VariantParts
+  }
+}

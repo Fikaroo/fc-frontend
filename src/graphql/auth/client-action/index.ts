@@ -11,7 +11,7 @@ import {
   SinginDocument,
   SinginMutation,
   SinginMutationVariables,
-} from "../generated/schema";
+} from "../../generated/schema";
 
 export async function loginClient(loginUserInput: LoginUserInput) {
   const result = await makeClient().mutate<

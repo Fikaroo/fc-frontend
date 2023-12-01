@@ -4,4 +4,6 @@ fragment UserParts on User {
   firstName
   lastName
   email
+  createdAt
+  updatedAt
 }

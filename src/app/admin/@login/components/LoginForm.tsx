@@ -24,7 +24,7 @@ import { useToast } from "@/components/ui/use-toast";
 
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { loginClient } from "@/graphql/client/auth";
+import { loginClient } from "@/graphql/auth/client-action";
 import { useUser } from "@/store/store";
 
 const schema = z.object({
@@ -90,7 +90,7 @@ const LoginForm = () => {
       });
     }
 
-    setUser(data.singin.role);
+    setUser(data?.singin);
     toast({ title: `Hey ${data?.singin?.firstName}` as any });
     router.refresh();
   };
@@ -113,11 +113,7 @@ const LoginForm = () => {
                   <FormItem>
                     <FormLabel>{label}</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder={placeholder}
-                        type={type || "text"}
-                        {...field}
-                      />
+                      <Input placeholder={placeholder} type={type} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

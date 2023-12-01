@@ -1,7 +1,0 @@
-#import "../user/UserFragment.gql"
-
-query CheckAuth {
-  checkAuth {
-    ...UserParts
-  }
-}

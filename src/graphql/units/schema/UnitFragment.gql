@@ -1,0 +1,12 @@
+#import "../../variants/schema/VariantFragment.gql"
+
+fragment UnitParts on Unit {
+  id
+  name
+  value
+  createdAt
+  updatedAt
+  variants {
+    ...VariantParts
+  }
+}

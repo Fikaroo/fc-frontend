@@ -1,0 +1,7 @@
+#import "./UnitFragment.gql"
+
+mutation CreateUnit($createUnitInput: CreateUnitInput!) {
+  createUnit(createUnitInput: $createUnitInput) {
+    ...UnitParts
+  }
+}
